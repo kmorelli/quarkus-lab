@@ -19,7 +19,7 @@ public class GreetingResource {
     @Path("/teste")
     @Produces(MediaType.TEXT_PLAIN)
     public String teste() {
-    	return "Testandoooo";
+    	return "Testando";
     }
 
     @GET
