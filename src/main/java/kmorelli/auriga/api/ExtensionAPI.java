@@ -32,7 +32,11 @@ public class ExtensionAPI {
     @GET
     @Path("/id/{id}")
     public Set<Extension> id(@PathParam("id") String id) {
-        return extensionsService.getById(id);
+        try {
+            return extensionsService.getById(id);
+        } catch (ExtensionException e) {
+            throw new AplicacaoException(Integer.toString(e.getCode()), e.getMessage());
+        }
     }
 
     @GET
@@ -41,7 +45,6 @@ public class ExtensionAPI {
         try {
             return extensionsService.getByIdAsync(id, autenticarExtension.getUuid());
         } catch (ExtensionException e) {
-            System.out.println("Nao entrou aqui");
             throw new AplicacaoException(Integer.toString(e.getCode()), e.getMessage());
         }
 
